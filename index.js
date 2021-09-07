@@ -67,9 +67,10 @@ function changeName(){
             document.getElementById('greetingText').innerHTML = greet + ", "+ Name;
             localStorage.setItem("Name", Name);
             location.reload();
+        } else{
+            Name = Name + e.key;
+            document.getElementById('greetingText').innerHTML = greet + ", "+ Name + "|";
         }
-        Name = Name + e.key;
-        document.getElementById('greetingText').innerHTML = greet + ", "+ Name + "|";
     };
     return;
 };
