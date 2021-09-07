@@ -1,8 +1,17 @@
-body  {
-    background-image: url("https://source.unsplash.com/user/spacex/1920x960/");
-    background-color: #ffff;
+body, html  {
     color: #ffff;
     font-family: "Red Hat Text", Arial, Helvetica, sans-serif;
+    height: 100%;
+    margin: 0;
+}
+
+.backgroundImg {
+    background-image: url("https://source.unsplash.com/user/spacex/1920x960/");
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: brightness(70%);
 }
 
 #weather {
