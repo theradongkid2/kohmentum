@@ -6,12 +6,12 @@ body, html  {
 }
 
 .backgroundImg {
-    background-image: url("https://source.unsplash.com/user/spacex/1920x960/");
+    background-image: url("https://source.unsplash.com/user/nasa/1920x960/");
     height: 100%;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    filter: brightness(70%);
+    filter: brightness(69%);
 }
 
 #weather {
