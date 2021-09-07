@@ -1,5 +1,7 @@
 const clock = document.getElementById("clock");
-var Name = "Joshua";
+const greetingText = document.getElementById("greetingText");
+var Name = localStorage.getItem("Name");
+if(!Name) Name = "";
 
 function clockStartTime() {
     var today = new Date();
@@ -22,17 +24,15 @@ fetch("https://type.fit/api/quotes")
   .then(function(data) {
     function rng(num){
       return Math.floor (Math.random() * (num - 1 + 1)) + 1;
-    }
-    const rng1 = rng(1643)
-    document.getElementById("quote").innerHTML = `${data[rng1].text}`
+    };
+    const rng1 = rng(1643);
+    document.getElementById("quote").innerHTML = `${data[rng1].text}`;
   });
 
   //Greeting
   var myDate = new Date();
   var hrs = myDate.getHours();
-
   var greet;
-
   if (hrs < 12)
       greet = 'Good Morning';
   else if (hrs >= 12 && hrs <= 17)
@@ -51,8 +51,25 @@ fetch(`https://api.openweathermap.org/data/2.5/weather?q=sydney&units=metric&APP
   var currentTemp = Math.round(data.main.temp);
   var imageLogo = data.weather[0].icon;
 
-  var link = `https://openweathermap.org/img/wn/${imageLogo}@2x.png`
+  var link = `https://openweathermap.org/img/wn/${imageLogo}@2x.png`;
   document.getElementById("weatherImg").src = link;
-  document.getElementById("temperature").innerHTML = `${currentTemp}°`
+  document.getElementById("temperature").innerHTML = `${currentTemp}°`;
+});
 
+
+greetingText.addEventListener("click", e => {
+    console.log("Clicked!");
+    Name = "";
+    document.getElementById('greetingText').innerHTML = greet + ", "+ Name + "|";
+    document.onkeypress = function (e) {
+        e = e || window.event;
+        console.log(e);
+        if(e.key === "Enter"){
+            document.getElementById('greetingText').innerHTML = greet + ", "+ Name;
+            localStorage.setItem("Name", Name);
+            return;
+        }
+        Name = Name + e.key;
+        document.getElementById('greetingText').innerHTML = greet + ", "+ Name + "|";
+    };
 });
