@@ -1,4 +1,5 @@
 const clock = document.getElementById("clock");
+const searchbar = document.getElementById("searchbar");
 const greetingText = document.getElementById("greetingText");
 var Name = localStorage.getItem("Name");
 if(!Name) Name = "";
@@ -56,20 +57,29 @@ fetch(`https://api.openweathermap.org/data/2.5/weather?q=sydney&units=metric&APP
   document.getElementById("temperature").innerHTML = `${currentTemp}°`;
 });
 
-
-greetingText.addEventListener("click", e => {
+function changeName(){
     console.log("Clicked!");
     Name = "";
     document.getElementById('greetingText').innerHTML = greet + ", "+ Name + "|";
     document.onkeypress = function (e) {
         e = e || window.event;
-        console.log(e);
         if(e.key === "Enter"){
             document.getElementById('greetingText').innerHTML = greet + ", "+ Name;
             localStorage.setItem("Name", Name);
-            return;
+            location.reload();
         }
         Name = Name + e.key;
         document.getElementById('greetingText').innerHTML = greet + ", "+ Name + "|";
     };
-});
+    return;
+};
+
+function searchFunc(){
+    document.onkeypress = function (e) {
+        if(e.key === "Enter"){
+            var Name = document.getElementById("searchbar").value;
+            if(!Name) return;
+            window.location.href = `https://www.google.com/search?q=${Name}`;
+        };
+    };
+};
