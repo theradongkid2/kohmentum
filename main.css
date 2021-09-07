@@ -1,0 +1,42 @@
+body  {
+    background-image: url("https://source.unsplash.com/user/spacex/1920x960/");
+    background-color: #ffff;
+    color: #ffff;
+    font-family: "Red Hat Text", Arial, Helvetica, sans-serif;
+}
+
+#weather {
+    display: flex;
+    text-align: right;
+    position: absolute;
+    top: 1%;
+    right: 2%;
+    font-weight: 900;
+}
+
+#weatherImg {
+    margin-top: -5%;
+}
+
+#clockDiv {
+    text-align: center;
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#clock {
+    font-size: 10em;
+}
+
+#greetingText {
+    font-size: 3.5em;
+    margin-top: -2.2em;
+}
+
+#quote {
+    font-size: 2em;
+    margin-top: 8em;
+    font-weight: 900;
+}
