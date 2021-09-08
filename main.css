@@ -47,8 +47,19 @@ body, html  {
     font-weight: 900;
 }
 
+#weatherLocDiv {
+    text-align: center !important;
+    position: absolute;
+    top: 7%;
+    right: 3%;
+}
+
+#weatherLocDiv:hover {
+    opacity: 0.69;
+}
+
 #weatherImg {
-    margin-top: -5%;
+    margin-top: -3%;
 }
 
 #clockDiv {

@@ -3,6 +3,8 @@ const searchbar = document.getElementById("searchbar");
 const greetingText = document.getElementById("greetingText");
 var Name = localStorage.getItem("Name");
 if(!Name) Name = "";
+var WeatherLoc = localStorage.getItem("WeatherLoc");
+if(!WeatherLoc) WeatherLoc = "Sydney"
 
 function clockStartTime() {
     var today = new Date();
@@ -45,16 +47,24 @@ fetch("https://type.fit/api/quotes")
   if(Name) document.getElementById('greetingText').innerHTML = greet + ", "+ Name;
 
 //Fetch API from OpenWeather
-fetch(`https://api.openweathermap.org/data/2.5/weather?q=sydney&units=metric&APPID=277e4ead61d59f325b8ecfd98dd8963b`).then(function (response) {
+fetch(`https://api.openweathermap.org/data/2.5/weather?q=${WeatherLoc}&units=metric&APPID=277e4ead61d59f325b8ecfd98dd8963b`).then(function (response) {
 	// The API call was successful!
 	return response.json();
 }).then(function (data) {
-  var currentTemp = Math.round(data.main.temp);
-  var imageLogo = data.weather[0].icon;
+    try{
+        var currentTemp = Math.round(data.main.temp);
+        var imageLogo = data.weather[0].icon;
+    } catch(e){
+        var currentTemp = "";
+    }
 
-  var link = `https://openweathermap.org/img/wn/${imageLogo}@2x.png`;
-  document.getElementById("weatherImg").src = link;
-  document.getElementById("temperature").innerHTML = `${currentTemp}°`;
+    var link = `https://openweathermap.org/img/wn/${imageLogo}@2x.png`;
+    if(currentTemp){ 
+        document.getElementById("temperature").innerHTML = `${currentTemp}°`;
+        document.getElementById("weatherImg").src = link;
+    } else {
+        document.getElementById("temperature").innerHTML = `Weather Location Invalid`
+    }
 });
 
 function changeName(){
@@ -83,4 +93,23 @@ function searchFunc(){
             window.location.href = `https://www.google.com/search?q=${Name}`;
         };
     };
+};
+
+
+document.getElementById("weatherLocation").innerHTML = `${WeatherLoc}`
+function changeWeatherLoc(){
+    WeatherLoc = "";
+    document.getElementById('weatherLocation').innerHTML = WeatherLoc + "|";
+    document.onkeypress = function (e) {
+        e = e || window.event;
+        if(e.key === "Enter"){
+            document.getElementById('weatherLocation').innerHTML = WeatherLoc;
+            localStorage.setItem("WeatherLoc", WeatherLoc);
+            location.reload();
+        } else{
+            WeatherLoc = WeatherLoc + e.key;
+            document.getElementById('weatherLocation').innerHTML = WeatherLoc + "|";
+        }
+    };
+    return;
 };
