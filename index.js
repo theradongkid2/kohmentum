@@ -40,7 +40,7 @@ fetch("https://type.fit/api/quotes")
       greet = 'Good Morning';
   else if (hrs >= 12 && hrs <= 17)
       greet = 'Good Afternoon';
-  else if (hrs >= 17 && hrs <= 24)
+  else if (hrs >= 18 && hrs <= 24)
       greet = 'Good Evening';
 
   document.getElementById('greetingText').innerHTML = greet + " "+ Name;
